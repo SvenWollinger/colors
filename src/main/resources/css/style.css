@@ -7,13 +7,36 @@
 body {
     font-family: "Roboto Mono", monospace;
     padding: 0;
-    overflow: hidden;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
 }
 
-#canvas {
-    height: 100vh;
-    width: 100vw;
-    display: block;
+.text-border {
+    -webkit-text-stroke: 1.5px black; /* For Safari */
+    text-stroke: 1.5px black; /* Standard syntax */
+    color: white; /* Set the text color */
 }
+
+    .container {
+        display: flex; /* Use flexbox to align items */
+        flex-wrap: wrap; /* Wrap the items to the next line if necessary */
+        overflow-x: auto; /* Enable horizontal scrolling for overflow content */
+        justify-content: center; /* Center items horizontally */
+        align-content: center; /* Center items vertically */
+        width: 100%; /* Set a width for the container */
+        margin: 0 auto; /* Center the container horizontally */
+        }
+
+    .item {
+    cursor: pointer;
+        width: 225px;
+        height: 225px;
+        float: left;
+        margin: 10px;
+        padding: 50px;
+        border: 5px solid black;
+        font-size: 30px;
+        box-sizing: border-box;
+        justify-content: center; /* Center items horizontally */
+                text-align: center; /* Center text horizontally */
+                        display: flex; /* Use flexbox to center text inside the div */
+                        align-items: center; /* Center items vertically */
+    }
