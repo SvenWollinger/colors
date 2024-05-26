@@ -52,3 +52,23 @@ fun Double.toFixed(digits: Int) = asDynamic().toFixed(2)
 fun launch(block: suspend CoroutineScope.() -> Unit) {
     MainScope().launch(block = block)
 }
+
+fun hexToRgb(hex: String): Color {
+    var hexColor = hex.removePrefix("#")
+
+    if (hexColor.length == 3)
+        hexColor = hexColor.map { "$it$it" }.joinToString("")
+
+    val intColor = hexColor.toInt(16)
+
+    val r = (intColor shr 16) and 0xFF
+    val g = (intColor shr 8) and 0xFF
+    val b = intColor and 0xFF
+
+    return Color("custom", r, g, b)
+}
+
+fun rgbToHex(r: Int, g: Int, b: Int): String {
+    fun c(c: Int) = with(c.toString(16)) { if(this.length == 1) "0$this" else this }
+    return "#${c(r)}${c(g)}${c(b)}"
+}

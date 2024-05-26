@@ -6,7 +6,6 @@ data class Color(
     val g: Int,
     val b: Int
 ) {
-
     val cssString = "rgb($r, $g, $b)"
 
     companion object {
@@ -60,9 +59,4 @@ data class Color(
             Color("Wheat", 245, 222, 179)
         )
     }
-}
-
-fun rgbToHex(r: Int, g: Int, b: Int): String {
-    fun c(c: Int) = with(c.toString(16)) { if(this.length == 1) "0$this" else this }
-    return "#${c(r)}${c(g)}${c(b)}"
 }
