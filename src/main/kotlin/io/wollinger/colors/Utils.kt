@@ -23,36 +23,6 @@ fun Window.setSearchParam(key: String, value: String) {
     window.history.pushState("", "", "?$params")
 }
 
-fun Window.removeSearchParam(key: String) {
-    val params = getParams()
-    params.delete(key)
-    window.history.pushState("", "", "?$params")
-}
-
-suspend inline fun <reified T> dl(url: String): Deferred<T> {
-    val decoded = Json.decodeFromString<T>(download(url).await())
-    return Promise { onSuccess, _ -> onSuccess.invoke(decoded) }.asDeferred()
-}
-
-fun download(url: String): Deferred<String> {
-    return Promise { onSuccess, _ ->
-        XMLHttpRequest().apply {
-            open("GET", url)
-            send()
-            onreadystatechange = {
-                if(readyState == XMLHttpRequest.DONE && status == 200.toShort())
-                    onSuccess.invoke(responseText)
-            }
-        }
-    }.asDeferred()
-}
-
-fun Double.toFixed(digits: Int) = asDynamic().toFixed(2)
-
-fun launch(block: suspend CoroutineScope.() -> Unit) {
-    MainScope().launch(block = block)
-}
-
 fun hexToRgb(hex: String): Color {
     var hexColor = hex.removePrefix("#")
 
